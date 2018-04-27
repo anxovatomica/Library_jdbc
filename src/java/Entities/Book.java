@@ -13,9 +13,9 @@ public class Book {
     private String name;
     private String author;
     private String isbn;
-    private Date release_date;
+    private String release_date;
 
-    public Book(String name, String author, String isbn, Date release_date) {
+    public Book(String name, String author, String isbn, String release_date) {
         this.name = name;
         this.author = author;
         this.isbn = isbn;
@@ -46,11 +46,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getRelease_date() {
+    public String getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
     
