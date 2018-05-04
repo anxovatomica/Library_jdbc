@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Estructura de la taula `Libros`
 --
 
-CREATE TABLE `Libros` (
+CREATE TABLE `Book` (
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `release_date` datetime NOT NULL,
@@ -58,7 +58,6 @@ CREATE TABLE `Loans` (
 CREATE TABLE `Partners` (
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `id_partner` int(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,7 +69,7 @@ CREATE TABLE `Partners` (
 --
 -- Index de la taula `Libros`
 --
-ALTER TABLE `Libros`
+ALTER TABLE `Book`
   ADD PRIMARY KEY (`isbn`);
 
 --

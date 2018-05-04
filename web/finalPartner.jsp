@@ -14,9 +14,11 @@
     <body>
         <%
             String status = (String) request.getAttribute("status");
+            String loan = (String) request.getAttribute("loan");
             String back = (String) request.getAttribute("back");
         %>
         <h1> <%= status %> </h1>
-        <a href="<%= back %>" target="_blank">Go Back</a> 
+        <a href="<%= back %>" target="_blank">Go Back</a>
+        <a href="<%= loan %>" target="_blank">New Loan</a>
     </body>
 </html>

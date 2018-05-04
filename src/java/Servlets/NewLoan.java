@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.LibraryDAO;
 import Entities.Book;
+import Entities.Loan;
+import Entities.Partner;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -27,8 +29,8 @@ import java.util.Date;
  *
  * @author linusdufol
  */
-@WebServlet(name = "NewBook", urlPatterns = {"/NewBook"})
-public class NewBook extends HttpServlet {
+@WebServlet(name = "NewLoan", urlPatterns = {"/NewLoan"})
+public class NewLoan extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,17 +44,14 @@ public class NewBook extends HttpServlet {
             throws ServletException, IOException {
         
         LibraryDAO libraryDAO = new LibraryDAO();
-        
-        String name = request.getParameter("name");
-        String author = request.getParameter("author");
+        Date retirement_date = new Date(request.getParameter("retirment_date"));
+        Date deliver_date = new Date(request.getParameter("deliver_date"));
+        String email = request.getParameter("email");
         String isbn = request.getParameter("isbn");
-        String release_date = request.getParameter("release_date");
-        String string = "January 2, 2010";
-        
-        Book b = new Book(name, author, isbn, release_date);
-        
+        String id_loan = request.getParameter("id_loan");
+        Loan l = new Loan(retirement_date, deliver_date, email, getBookByIsbn(isbn), id_loan);
         try {
-            libraryDAO.insertBook(b);
+            libraryDAO.insertLoan(l);
             request.setAttribute("status", "Book Created! :)");
             request.setAttribute("back", "index.html");
         } catch (LibraryException | SQLException ex) {
@@ -77,7 +76,7 @@ public class NewBook extends HttpServlet {
     try {
         processRequest(request, response);
     } catch (Exception ex) {
-        Logger.getLogger(NewBook.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(NewLoan.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 
@@ -95,7 +94,7 @@ public class NewBook extends HttpServlet {
     try {
         processRequest(request, response);
     } catch (Exception ex) {
-        Logger.getLogger(NewBook.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(NewLoan.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 

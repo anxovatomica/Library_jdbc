@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.LibraryDAO;
 import Entities.Book;
+import Entities.Partner;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -27,8 +28,8 @@ import java.util.Date;
  *
  * @author linusdufol
  */
-@WebServlet(name = "NewBook", urlPatterns = {"/NewBook"})
-public class NewBook extends HttpServlet {
+@WebServlet(name = "NewPartner", urlPatterns = {"/NewPartner"})
+public class NewPartner extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,24 +43,25 @@ public class NewBook extends HttpServlet {
             throws ServletException, IOException {
         
         LibraryDAO libraryDAO = new LibraryDAO();
-        
         String name = request.getParameter("name");
-        String author = request.getParameter("author");
-        String isbn = request.getParameter("isbn");
-        String release_date = request.getParameter("release_date");
-        String string = "January 2, 2010";
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         
-        Book b = new Book(name, author, isbn, release_date);
+        
+        Partner p = new Partner(name, surname, email, password);
         
         try {
-            libraryDAO.insertBook(b);
-            request.setAttribute("status", "Book Created! :)");
+            libraryDAO.insertPartner(p);
+            request.setAttribute("status", " Partner Signed Up! :P");
+            request.setAttribute("loan", "newLoan.html");
             request.setAttribute("back", "index.html");
         } catch (LibraryException | SQLException ex) {
             request.setAttribute("status", ex.getMessage());
+            request.setAttribute("back", ex.getMessage());
         }
         
-        request.getRequestDispatcher("/final.jsp").forward(request, response);
+        request.getRequestDispatcher("/finalPartner.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,7 +79,7 @@ public class NewBook extends HttpServlet {
     try {
         processRequest(request, response);
     } catch (Exception ex) {
-        Logger.getLogger(NewBook.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 
@@ -95,7 +97,7 @@ public class NewBook extends HttpServlet {
     try {
         processRequest(request, response);
     } catch (Exception ex) {
-        Logger.getLogger(NewBook.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(NewPartner.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 

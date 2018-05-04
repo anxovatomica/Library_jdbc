@@ -12,14 +12,12 @@ package Entities;
 public class Partner {
     private String name;
     private String surname;
-    private int id_partner;
     private String email;
     private String password;
 
-    public Partner(String name, String surname, int id_partner, String email, String password) {
+    public Partner(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
-        this.id_partner = id_partner;
         this.email = email;
         this.password = password;
     }
@@ -38,14 +36,6 @@ public class Partner {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public int getId_partner() {
-        return id_partner;
-    }
-
-    public void setId_partner(int id_partner) {
-        this.id_partner = id_partner;
     }
 
     public String getEmail() {

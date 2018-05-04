@@ -21,7 +21,12 @@ public class Book {
         this.isbn = isbn;
         this.release_date = release_date;
     }
-
+public Book(String isbn) {
+        this.isbn = isbn;
+    }
+public Book(){
+    
+}
     public String getName() {
         return name;
     }
